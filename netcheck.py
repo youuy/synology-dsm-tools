@@ -29,7 +29,7 @@ if __name__ == '__main__':
     restart_wan_counter = 0
     # 先休眠一段时间，等待首次启动联网成功再检查网络状况
     logging.info('start to listen network state...')
-    time.sleep(1)
+    time.sleep(60)
     reboot = False
     while True:
         logging.info('error_counter : %s' % error_counter)
@@ -47,12 +47,12 @@ if __name__ == '__main__':
                 logging.info('network is not ok, restarting router...')
                 reboot = True
                 restart_wan_counter += 1
-                # os.system('reboot -f')
+                os.system('reboot -f')
             if error_counter >= 3:
                 if not reboot:
                     logging.info('network is not ok, restarting wan...')
-                    # os.system('/sbin/service restart_wan')
                     restart_wan_counter += 1
+                    os.system('/sbin/service restart_wan')
             else:
                 logging.info('network is ok')
             error_counter = 0
