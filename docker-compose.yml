@@ -1,0 +1,9 @@
+version: '3'
+services:
+  leotools:
+    container_name: leotools
+    image: registry.youuy.com/leotools:latest
+    volumes:
+      - ./ddns.json:/app/ddns.json
+      - ./ddns.log:/app/ddns.log
+    restart: unless-stopped
